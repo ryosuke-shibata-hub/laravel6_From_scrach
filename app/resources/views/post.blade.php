@@ -9,7 +9,7 @@
 <body>
     <h1>my blog post</h1>
     <p>
-        {{ $post }}
+        {{ $post->body }}
     </p>
 </body>
 </html>
