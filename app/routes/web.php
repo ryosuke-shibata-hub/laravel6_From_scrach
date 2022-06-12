@@ -14,15 +14,18 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/',function ()
-{
-    $name = request('name');
-
-    return view('test',[
-        'name' =>request('name')
-        ]);
+Route::get('/contact', function () {
+    return view('contact');
 });
+
+// Route::get('/',function ()
+// {
+//     $name = request('name');
+
+//     return view('test',[
+//         'name' =>request('name')
+//         ]);
+// });
 
 // Route::get('/posts/{post}' , function ($post) {
 //     $posts = [
