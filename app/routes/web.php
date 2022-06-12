@@ -14,9 +14,22 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/contact', function () {
-    return view('contact');
+
+Route::get('/about', function () {
+
+    $article = App\Article::latest()->get();
+
+    // return $article;
+    return view('about',[
+        'article' => App\Article::latest()->get(),
+    ]);
 });
+
+Route::get('/articles','ArticleController@index');
+Route::get('/articles/{article}','ArticleController@show');
+// Route::get('/contact', function () {
+//     return view('contact');
+// });
 
 // Route::get('/',function ()
 // {
