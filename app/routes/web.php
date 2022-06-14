@@ -25,12 +25,12 @@ Route::get('/about', function () {
     ]);
 });
 
-Route::get('/articles','ArticleController@index');
+Route::get('/articles','ArticleController@index')->name('article.index');
 
 Route::post('/articles','ArticleController@store');
 Route::get('/articles/create','ArticleController@create');
 
-Route::get('/articles/{article}','ArticleController@show');
+Route::get('/articles/{article}','ArticleController@show')->name('article.show');
 
 Route::get('/articles/{article}/edit','ArticleController@edit');
 Route::put('/articles/{article}','ArticleController@update');

@@ -18,11 +18,11 @@ class ArticleController extends Controller
             'article' => $article,
         ]);
     }
-    public function show($id)
+    public function show(Article $article)
     {
         //show a single resource
 
-        $article = Article::find($id);
+        // $article = Article::findOrfail($id);
         // dd($article);
         // dd($articleId);
         return view('article.show',[
@@ -42,51 +42,54 @@ class ArticleController extends Controller
         //persist the new resource
         // dump(request()->all());
 
-        request()->validate([
-            'title' => ['required','min:3','max:255'],
-            'excerpt' => 'required',
-            'body' => 'required',
-        ]);
 
-        $article = new Article();
-        $article->title = request('title');
-        $article->excerpt = request('excerpt');
-        $article->body = request('body');
+        // $article = new Article();
+        // $article->title = request('title');
+        // $article->excerpt = request('excerpt');
+        // $article->body = request('body');
+        //  $article->save();
 
-        $article->save();
+        // Article::create( request()->validate([
+        //     'title' => ['required','min:3','max:255'],
+        //     'excerpt' => 'required',
+        //     'body' => 'required',
+        // ]));
 
-        return redirect('/articles');
+        Article::create($this->validateArticle());
+
+        return redirect(route('article.index'));
     }
 
-    public function edit($id)
+    public function edit(Article $article)
     {
         // show a view to edit an exisiting resource
 
-        $article = Article::find($id);
+        // $article = Article::find($id);
 
         return view('article.edit',[
             'article' => $article,
         ]);
     }
 
-    public function update($id)
+    public function update(Article $article)
     {
         // persist the resource
 
-        request()->validate([
-            'title' => ['required','min:3','max:255'],
-            'excerpt' => 'required',
-            'body' => 'required',
-        ]);
+        // request()->validate([
+        //     'title' => ['required','min:3','max:255'],
+        //     'excerpt' => 'required',
+        //     'body' => 'required',
+        // ]);
 
-        $article = Article::find($id);
-        $article->title = request('title');
-        $article->excerpt = request('excerpt');
-        $article->body = request('body');
+        // $article = Article::find($id);
+        // $article->title = request('title');
+        // $article->excerpt = request('excerpt');
+        // $article->body = request('body');
 
-        $article->save();
+        // $article->save();
+        $article->update($this->validateArticle());
 
-        return redirect('/articles/' . $article->id);
+        return redirect(route('article.show',$article));
 
     }
 
@@ -94,5 +97,14 @@ class ArticleController extends Controller
     {
         // delete the resource
 
+    }
+
+    protected function validateArticle() {
+
+        return request()->validate([
+            'title' => ['required','min:3','max:255'],
+            'excerpt' => 'required',
+            'body' => 'required',
+        ]);
     }
 }
