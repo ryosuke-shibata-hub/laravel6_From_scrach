@@ -21,9 +21,10 @@ Released   : 20140225
 <link href="/default.css" rel="stylesheet">
 <link href="/fonts.css" rel="stylesheet">
 <link rel="stylesheet" href="css/app.css">
+{{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css"> --}}
 
 <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
-
+@yield('head')
 </head>
 <body>
     <div id="header-wrapper">
