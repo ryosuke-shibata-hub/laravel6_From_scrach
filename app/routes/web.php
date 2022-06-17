@@ -63,3 +63,6 @@ Route::put('/articles/{article}','ArticleController@update');
 // });
 
 Route::get('/posts/{post}','PostsController@show');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
